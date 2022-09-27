@@ -20,11 +20,11 @@ class Baralho:
             self.cards[i]  , self.cards[r] = self.cards[r] , self.cards[i]
                 
 
+if __name__ == "__main__":
+    baralho = Baralho()
 
-baralho = Baralho()
+    print(baralho.cards)
 
-print(baralho.cards)
+    baralho.shuffle()
 
-baralho.shuffle()
-
-print(baralho.cards)
+    print(baralho.cards)
