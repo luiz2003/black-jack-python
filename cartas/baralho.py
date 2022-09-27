@@ -5,11 +5,11 @@ class Baralho:
     def __init__(self):
         self.cards = []
         for naipe in ["Paus", "Copas", "Espada", "Ouro"]:
-            for i in range(1,11):
+            for i in range(1,12):
                 if i == 1:
                     self.cards.append(Carta( naipe, "A"))
                     continue
-                if i < 10:
+                if i <=10:
                     self.cards.append(Carta( naipe, i))
                     continue
                 for j in ["Valete", "Rainha", "Rei"]:
