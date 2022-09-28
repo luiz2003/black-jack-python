@@ -1,5 +1,5 @@
 import random
-from cartas import Carta
+from .cartas import Carta
 
 class Baralho:
     def __init__(self):
