@@ -1,5 +1,7 @@
 import random
-from .cartas import Carta
+from . import cartas
+
+Carta = cartas.Carta
 
 class Baralho:
     def __init__(self):
@@ -14,6 +16,10 @@ class Baralho:
                     continue
                 for j in ["Valete", "Rainha", "Rei"]:
                     self.cards.append(Carta( naipe, j))
+
+    def pop(self):
+        return self.cards.pop()
+
     def shuffle(self):
         for i in range (len(self.cards)-1,0,-1):
             r = random.randint(0 , i)

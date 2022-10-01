@@ -5,17 +5,20 @@ class Carta:
         self.naipe = naipe
     
     def get_value(self, hand):
-        if self.value != "A":
-            return self._value
         
-        if card in ["Valete", "Rainha", "Rei"]:
+        if self.value in ["Valete", "Rainha", "Rei"]:
             return 10
         
+        if self.value != "A":
+            return self.value 
+            
         for card in hand:
             if card.value in ["Valete", "Rainha", "Rei"]:
                 return 1
+            else:
+                return 11
         
-        return 11 
+        
 
     def __repr__(self) -> str:
         return str(self.value) + " " + self.naipe
