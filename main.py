@@ -1,6 +1,6 @@
 import pyglet
 
-window = pyglet.window.Window(resizable=True, caption='Blackjack')
+window = pyglet.window.Window(caption='Blackjack')
 
 icon = pyglet.image.load('blackjack_icon.png')
 window.set_icon(icon)
