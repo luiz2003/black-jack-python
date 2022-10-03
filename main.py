@@ -1,17 +1,16 @@
 import pyglet
 
-window = pyglet.window.Window()
+window = pyglet.window.Window(resizable=True, caption='Blackjack')
 
-label = pyglet.text.Label('Hello, world',
-                          font_name='Times New Roman',
-                          font_size=36,
-                          x=window.width//2, y=window.height//2,
-                          anchor_x='center', anchor_y='center')
+icon = pyglet.image.load('blackjack_icon.png')
+window.set_icon(icon)
+
+background = pyglet.image.load('blackjack_background.jpg')
 
 @window.event
 
 def on_draw():
     window.clear()
-    label.draw()
+    background.blit(0, 0)
 
 pyglet.app.run()
