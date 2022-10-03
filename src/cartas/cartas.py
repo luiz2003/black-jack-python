@@ -11,12 +11,12 @@ class Carta:
         
         if self.value != "A":
             return self.value 
-            
+        
         for card in hand:
             if card.value in ["Valete", "Rainha", "Rei"]:
                 return 1
-            else:
-                return 11
+
+        return 11
         
         
 
