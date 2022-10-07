@@ -1,5 +1,6 @@
 import random
 from . import cartas
+import pyglet
 
 Carta = cartas.Carta
 

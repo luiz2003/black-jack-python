@@ -1,8 +1,11 @@
-
+from pathlib import Path
+import pyglet
 class Carta:
     def __init__(self,  naipe, value):
         self.value = value
         self.naipe = naipe
+        self.image = pyglet.image.load(Path("../sprites/" + value + naipe))
+    
     
     def get_value(self, hand):
         
