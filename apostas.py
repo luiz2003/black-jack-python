@@ -2,13 +2,13 @@
 --- Anotações ---
 
   No Blackjack, você pode apostar qualquer valor x tq 0 < x <= TETO, em que TETO, no nosso jogo:
--> dobra a cada 3 partidas
+-> dobra a cada partida vencida
 -> reseta para TETO_INICIAL cada vez que o jogador perde
 
   Sobre contador_partidas no código abaixo:
 -> a cada vez que jogador ganha uma partida, contador_partidas += 1
 -> a cada vez que jogador perde uma partida, contador_partidas = 0
--> lógica deve ser implementada em main (farei em breve)
+-> lógica deve ser implementada em test
 '''
 
 class Aposta:
@@ -26,7 +26,7 @@ class Aposta:
         return self._teto
     
     def aumentar_teto(self):
-        if contador_partidas == 3:
+        if contador_partidas != 0: #enquanto jogador não perder...
             self._teto = 2 * self._teto 
     
     def resetar_teto(self):
