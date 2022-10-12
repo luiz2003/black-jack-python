@@ -18,9 +18,8 @@ class Player:
         print("Sua mão :", *self.hand)
 
     def hasBlackJack(self):
-      if self.hand[0].value in [10, "K", "J", "Q", "A"]:
+      if self.hand[0].value in [10, "Rei", "Valetes", "Rainha", "A"]:
             valueSet = {self.hand[0].value, self.hand[1].value }
-            if valueSet.difference({"K", "J", "Q"}) == {"A"}:
-              return True
+            return valueSet.difference({"Rei", "Valetes", "Rainha"}) == {"A"}
       return False
 

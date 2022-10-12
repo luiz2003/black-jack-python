@@ -4,7 +4,7 @@ class Carta:
     def __init__(self,  naipe, value):
         self.value = value
         self.naipe = naipe
-        image = pyglet.image.load(Path("../sprites/" + value + naipe))
+        image = pyglet.image.load(Path('./sprites/'+ str(value) + naipe + ".png").resolve())
         self.sprite = pyglet.sprite.Sprite(image)
     
     

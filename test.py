@@ -1,9 +1,7 @@
 from src.cartas import baralho
 from src.dealer import dealer
 from src.player import player
-from src.cartas import cartas
 
-Carta = cartas.Carta
 
 print("Começando o jogo ...")
 
@@ -15,14 +13,6 @@ player = player.Player()
 
 dealer.start_game(player)
 
-playerComBlackJack = player.Player()
-playersemBlackJack = player.Player()
-
-playerComBlackJack.hand.extend([Carta("Paus", 10), Carta("Paus", "K")])
-playersemBlackJack.hand.extend([Carta("Paus", 10), Carta("Paus", 5)])
-
-print(playerComBlackJack.hasBlackJack())
-print(playersemBlackJack.hasBlackJack())
 
 while True:
     player.show_hand()
