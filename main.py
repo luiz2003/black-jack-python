@@ -1,6 +1,5 @@
 import pyglet
 from pathlib import Path
-from src.game.game import Game
 
 window = pyglet.window.Window(caption='Blackjack')
 
