@@ -1,11 +1,11 @@
 import pyglet
 from pathlib import Path
-
-window = pyglet.window.Window(caption='Blackjack')
+from src.game.game import Game
 
 batch = pyglet.graphics.Batch()
-background = pyglet.graphics.OrderedGroup(0)
 cards = pyglet.graphics.OrderedGroup(1)
+
+window = pyglet.window.Window(caption='Blackjack')
 
 icon = pyglet.image.load(Path('sprites/blackjack_icon.png'))
 window.set_icon(icon)
