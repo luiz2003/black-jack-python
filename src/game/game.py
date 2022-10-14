@@ -22,13 +22,13 @@ class Game :
 
         self.define_positions()
 
-        self.dealer_sprite_group = pyglet.graphics.OrderedGroup(2)
+        self.dealer_sprite_group = pyglet.graphics.OrderedGroup(2, parent=self.card_group)
 
         back_image =  pyglet.image.load(Path('./sprites/CartaVirada.png').resolve())
         self.back_image_sprite = pyglet.sprite.Sprite(back_image, batch=self.batch, group=self.card_group, x= 50, y= self.window_heigth - 100 )
         self.dealer.hand[0].sprite.batch = self.batch
         self.dealer.hand[0].sprite.group = self.dealer_sprite_group
-        self.dealer.hand[0].sprite.position = (self.back_image_sprite.width + 25, self.window_heigth - 100)
+        self.dealer.hand[0].sprite.position = (self.back_image_sprite.width + 70, self.window_heigth - 100)
         
     def define_positions(self):
         player_total_width = 0

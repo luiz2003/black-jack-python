@@ -4,6 +4,7 @@ from src.game.game import Game
 
 batch = pyglet.graphics.Batch()
 cards = pyglet.graphics.OrderedGroup(1)
+background_group = pyglet.graphics.OrderedGroup(0)
 
 window = pyglet.window.Window(caption='Blackjack')
 
@@ -12,7 +13,7 @@ window.set_icon(icon)
 
 
 background_image = pyglet.image.load(Path('sprites/blackjack_background.jpg'))
-background = pyglet.sprite.Sprite(background_image)
+background = pyglet.sprite.Sprite(background_image, group=background_group)
 
 game = Game(
     batch = batch,
