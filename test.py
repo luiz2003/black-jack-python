@@ -2,6 +2,7 @@ from src.cartas import baralho
 from src.dealer import dealer
 from src.player import player
 
+
 print("Começando o jogo ...")
 
 deck = baralho.Baralho()
@@ -11,6 +12,7 @@ dealer = dealer.Dealer()
 player = player.Player()
 
 dealer.start_game(player)
+
 
 while True:
     player.show_hand()

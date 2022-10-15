@@ -15,7 +15,13 @@ class Dealer(player.Player):
         
         self.add_card(self.deck.pop())
         self.add_card(self.deck.pop())
+
         print("Carta do dealer:", self.hand[0])
+
+        
+        
+
+        
 
         
     
