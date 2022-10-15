@@ -1,12 +1,13 @@
 import random
 from . import cartas
+import pyglet
 
 Carta = cartas.Carta
 
 class Baralho:
     def __init__(self):
         self.cards = []
-        for naipe in ["Paus", "Copas", "Espada", "Ouro"]:
+        for naipe in ["Paus", "Copas", "Espadas", "Ouro"]:
             for i in range(1,12):
                 if i == 1:
                     self.cards.append(Carta( naipe, "A"))

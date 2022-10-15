@@ -1,8 +1,12 @@
-
+from pathlib import Path
+import pyglet
 class Carta:
     def __init__(self,  naipe, value):
         self.value = value
         self.naipe = naipe
+        image = pyglet.image.load(Path('./sprites/'+ str(value) + naipe + ".png").resolve())
+        self.sprite = pyglet.sprite.Sprite(image)
+    
     
     def get_value(self, hand):
         
@@ -22,3 +26,6 @@ class Carta:
 
     def __repr__(self) -> str:
         return str(self.value) + " " + self.naipe
+
+    def __eq__(self, o):
+      return self.value == o.value and self.naipe == o.naipe
