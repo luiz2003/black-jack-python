@@ -123,15 +123,13 @@ class Aposta:
             print("Aposta inválida.")
 
 print("Começando o jogo ...")
-a = int(input("Insira uma aposta entre 0 e 1500."))
-
-deck = Baralho()
-
-dealer = Dealer()
-
-player = Player()
+print("Insira um valor entre 0 e", Aposta.TETO_INICIAL)
+a = int(input())
 
 aposta = Aposta(a)
+deck = Baralho()
+dealer = Dealer()
+player = Player()
 
 dealer.start_game(player)
 
@@ -168,4 +166,4 @@ while True:
             aposta.resetar_teto(contador_partidas)
             break
 
-
+print(contador_partidas)
