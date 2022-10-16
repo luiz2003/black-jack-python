@@ -30,8 +30,14 @@ def on_mouse_press(x,y, button, modifiers):
 def on_draw():
     window.clear()
     background.draw()
-    batch.draw()
-    game.botao_comprar.draw()
-    game.botao_parar.draw()
+    
+    if game.is_over:
+        game.draw_result()
+        print(game.result)
+          
+    else:
+        batch.draw()
+        game.botao_comprar.draw()
+        game.botao_parar.draw()
 
 pyglet.app.run()

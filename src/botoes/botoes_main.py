@@ -42,6 +42,6 @@ class BotaoComprar(Widget):
     
 
 class BotaoParar(Widget):
-
-    def on_click(self):
-        print("clicou em Parar")
+    def __init__(self, x, y, width, height, texto, func):
+        super().__init__(x, y, width, height, texto)
+        self.on_click = func
