@@ -114,7 +114,7 @@ class Aposta:
     
     def resetar_teto(self, contador_partidas):
         if contador_partidas == 0:
-            self._teto = 1500
+            self._teto = Aposta.TETO_INICIAL
             
     def nova_aposta(self, novo_valor):
         if novo_valor > 0 and novo_valor <= self._teto:
