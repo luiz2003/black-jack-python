@@ -133,8 +133,10 @@ player = Player()
 
 dealer.start_game(player)
 
+contador_partidas = 0
+
 while True:
-    contador_partidas = 0
+    #contador_partidas = 0
     player.show_hand()
     res = input("Quer outra carta? [y/n]")
     
@@ -143,27 +145,60 @@ while True:
         player.show_hand()
         if player.total_value > 21 and dealer.total_value > 21:
             print("É um empate!")
-            break
+            b = input("Quer continuar? [y/n]")
+            if b == "n":
+              break
+              
+            print(contador_partidas)
+            #break
         elif player.total_value > 21 :
             print("Seu valor passou de 21, você perdeu!")
+            b = input("Quer continuar? [y/n]")
+            print(contador_partidas)
+            if b == "n":
+              break
+            else:
+              dealer.start_game(player)
+          
             contador_partidas = 0
             aposta.resetar_teto(contador_partidas)
-            break
+            #break
     else:
         if dealer.total_value > 21:
             print("Você ganhou. O dealer estourou!")
+            b = input("Quer continuar? [y/n]")
+            print(contador_partidas)
+            if b == "n":
+              break
+          
             aposta.aumentar_teto(contador_partidas)
             contador_partidas += 1
-            break
+            #break
         if player.total_value > dealer.total_value:
             print("Parabéns! Você ganhou")
+            b = input("Quer continuar? [y/n]")
+            if b == "n":
+              break
+              
             contador_partidas += 1
             aposta.aumentar_teto(contador_partidas)
-            break
+            #break
         else: 
             print("O dealer conseguiu um valor maior! Você perde")
+            b = input("Quer continuar? [y/n]")
+            print(contador_partidas)
+            if b == "n":
+              break
+          
             contador_partidas = 0
             aposta.resetar_teto(contador_partidas)
-            break
+            
+            #break
+          
+    #b = input("Quer continuar? [y/n]")
+    #print(contador_partidas)
 
-print(contador_partidas)
+    #if b == "n":
+      #break
+
+#print(contador_partidas)
