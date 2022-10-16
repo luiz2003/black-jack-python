@@ -1,6 +1,7 @@
 from ..cartas import baralho
 from ..dealer import dealer
 from ..player import player
+from ..botoes.botoes_main import BotaoComprar, BotaoParar
 import pyglet
 from pathlib import Path
 
@@ -29,6 +30,18 @@ class Game :
         self.dealer.hand[0].sprite.batch = self.batch
         self.dealer.hand[0].sprite.group = self.dealer_sprite_group
         self.dealer.hand[0].sprite.position = (self.back_image_sprite.width + 70, self.window_heigth - 100)
+
+        self.botao_comprar = BotaoComprar(20, 50, 100, 50, "Comprar", self.buy_card)
+        self.botao_parar = BotaoParar(520, 50, 100, 50, "Parar")
+
+    
+    @property
+    def is_over(self):
+        pass
+
+    def buy_card(self):
+        self.dealer.pull_card(self.player)
+        self.define_positions()
         
     def define_positions(self):
         player_total_width = 0

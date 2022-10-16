@@ -1,7 +1,7 @@
 import pyglet
 from pathlib import Path
 from src.game.game import Game
-from botoes_main import BotaoComprar, BotaoParar
+from src.botoes.botoes_main import BotaoComprar, BotaoParar
 
 batch = pyglet.graphics.Batch()
 cards = pyglet.graphics.OrderedGroup(1)
@@ -20,16 +20,18 @@ game = Game(
     group = cards
 )
 
-botao_comprar = BotaoComprar(20, 50, 100, 50, "Comprar")
-botao_parar = BotaoParar(520, 50, 100, 50, "Parar")
 
 @window.event
+def on_mouse_press(x,y, button, modifiers):
+    game.botao_comprar.clica(x,y)
+    game.botao_parar.clica(x,y)
 
+@window.event
 def on_draw():
     window.clear()
     background.draw()
     batch.draw()
-    botao_comprar.draw()
-    botao_parar.draw()
+    game.botao_comprar.draw()
+    game.botao_parar.draw()
 
 pyglet.app.run()
