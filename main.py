@@ -20,7 +20,6 @@ game = Game(
     group = cards
 )
 
-
 @window.event
 def on_mouse_press(x,y, button, modifiers):
     game.botao_comprar.clica(x,y)
@@ -33,6 +32,8 @@ def on_draw():
     
     if game.is_over:
         game.draw_result()
+        game.botao_recomecar.draw()
+        game.botao_menu.draw()
         print(game.result)
           
     else:

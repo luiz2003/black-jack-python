@@ -1,7 +1,8 @@
 from ..cartas import baralho
 from ..dealer import dealer
 from ..player import player
-from ..botoes.botoes_main import BotaoComprar, BotaoParar
+from ..botoes.botoes_main import BotaoComprar, BotaoParar 
+from ..botoes.botoes_gameresult import BotaoMenu, BotaoRecomecar
 import pyglet
 from pathlib import Path
 
@@ -36,6 +37,8 @@ class Game :
 
         self.botao_comprar = BotaoComprar(20, 50, 100, 50, "Comprar", self.buy_card)
         self.botao_parar = BotaoParar(520, 50, 100, 50, "Parar", self.on_click_stop)
+        self.botao_recomecar = BotaoRecomecar(20, 50, 150, 50, "Recomeçar", self.restart_game)
+        self.botao_menu = BotaoMenu(470, 50, 150, 50, "Ir para Menu", self.go_to_menu)
         
         self.result = ""
 
@@ -97,9 +100,19 @@ class Game :
         self.dealer.pull_card(self.player)
         self.define_positions()
 
+
     def on_click_stop(self):
         self._is_over = True
-        
+
+
+    def restart_game(self):
+        pass 
+
+
+    def go_to_menu(self):
+        pass
+
+
     def define_positions(self):
         player_total_width = 0
 
@@ -114,5 +127,3 @@ class Game :
             card.sprite.group = self.card_group
             card.sprite.position = (self.window_width//2 - player_total_width//2 + x*30 + x*card.sprite.width, 50)
             x+=1
-        
-
