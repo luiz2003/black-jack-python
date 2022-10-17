@@ -25,8 +25,7 @@ class Widget:
         if self.contem_ponto(x, y):
             self.on_click()
 
-    def on_click(self):
-        print("Clicou em " + str(self))
+    
     
     def draw(self):
         self.moldura.draw()
@@ -36,11 +35,13 @@ class Widget:
         return f"Botão '{self.texto}'"
 
 class BotaoComprar(Widget):
+    def __init__(self, x, y, width, height, texto, func):
+        super().__init__(x, y, width, height, texto)
+        self.on_click = func
 
-    def on_click(self):
-        print("clicou em Comprar")
+    
 
 class BotaoParar(Widget):
-
-    def on_click(self):
-        print("clicou em Parar")
+    def __init__(self, x, y, width, height, texto, func):
+        super().__init__(x, y, width, height, texto)
+        self.on_click = func
