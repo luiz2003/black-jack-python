@@ -1,7 +1,7 @@
 from ..cartas import baralho
 from ..dealer import dealer
 from ..player import player
-from ..botoes.botoes_main import Botao
+from ..botoes.botao_main import Botao
 import pyglet
 from pathlib import Path
 
