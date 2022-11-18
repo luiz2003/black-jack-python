@@ -1,12 +1,12 @@
 from ..cartas import baralho
 from ..dealer import dealer
 from ..player import player
-from ..botoes.botoes_main import BotaoComprar, BotaoParar, BotaoMenu, BotaoRecomecar
+from ..botoes.botoes_main import Botao
 import pyglet
 from pathlib import Path
 
-class Game :
-    def __init__(self, batch , group, window_width = 640, window_height = 480 ):
+class Game:
+    def __init__(self, batch , group, window_width = 640, window_height = 480):
 
         self._is_over  = False
         self.stop = False
@@ -34,10 +34,10 @@ class Game :
         self.dealer.hand[0].sprite.group = self.dealer_sprite_group
         self.dealer.hand[0].sprite.position = (self.back_image_sprite.width + 70, self.window_height - 100)
 
-        self.botao_comprar = BotaoComprar(20, 50, 100, 50, "Comprar", self.buy_card)
-        self.botao_parar = BotaoParar(520, 50, 100, 50, "Parar", self.on_click_stop)
-        self.botao_recomecar = BotaoRecomecar(20, 50, 150, 50, "Recomeçar", self.restart_game)
-        self.botao_menu = BotaoMenu(470, 50, 150, 50, "Ir para Menu", self.go_to_menu)
+        self.botao_comprar = Botao(20, 50, 100, 50, "Comprar", self.buy_card)
+        self.botao_parar = Botao(520, 50, 100, 50, "Parar", self.on_click_stop)
+        self.botao_recomecar = Botao(20, 50, 150, 50, "Recomeçar", self.restart_game)
+        self.botao_menu = Botao(470, 50, 150, 50, "Ir para Menu", self.go_to_menu)
         
         self.result = ""
 
