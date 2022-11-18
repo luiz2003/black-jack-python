@@ -1,8 +1,7 @@
 from ..cartas import baralho
 from ..dealer import dealer
 from ..player import player
-from ..botoes.botoes_main import BotaoComprar, BotaoParar 
-from ..botoes.botoes_gameresult import BotaoMenu, BotaoRecomecar
+from ..botoes.botoes_main import BotaoComprar, BotaoParar, BotaoMenu, BotaoRecomecar
 import pyglet
 from pathlib import Path
 

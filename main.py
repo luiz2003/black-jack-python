@@ -1,7 +1,6 @@
 import pyglet
 from pathlib import Path
 from src.game.game import Game
-from src.botoes.botoes_main import BotaoComprar, BotaoParar
 
 batch = pyglet.graphics.Batch()
 cards = pyglet.graphics.OrderedGroup(1)
