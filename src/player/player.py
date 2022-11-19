@@ -11,7 +11,7 @@ class Player:
     def total_value(self):
         value = 0
         for card in self.hand:
-            value += card.get_value(self.hand)
+            value += card.convert_value(self.hand)
         return value
 
     def show_hand(self):

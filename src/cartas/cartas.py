@@ -2,22 +2,22 @@ from pathlib import Path
 import pyglet
 class Carta:
     def __init__(self,  naipe, value):
-        self.value = value
-        self.naipe = naipe
+        self._value = value
+        self._naipe = naipe
         image = pyglet.image.load(Path('./sprites/'+ str(value) + naipe + ".png").resolve())
         self.sprite = pyglet.sprite.Sprite(image)
     
     
-    def get_value(self, hand):
+    def convert_value(self, hand):
         
-        if self.value in ["Valete", "Rainha", "Rei"]:
+        if self._value in ["Valete", "Rainha", "Rei"]:
             return 10
         
-        if self.value != "A":
-            return self.value 
+        if self._value != "A":
+            return self._value 
         
         for card in hand:
-            if card.value in ["Valete", "Rainha", "Rei"]:
+            if card._value in ["Valete", "Rainha", "Rei"]:
                 return 1
 
         return 11
@@ -25,7 +25,7 @@ class Carta:
         
 
     def __repr__(self) -> str:
-        return str(self.value) + " " + self.naipe
+        return str(self._value) + " " + self._naipe
 
     def __eq__(self, o):
-      return self.value == o.value and self.naipe == o.naipe
+      return self._value == o.value and self._naipe == o.naipe
