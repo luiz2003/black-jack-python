@@ -8,8 +8,7 @@ from pathlib import Path
 class Game:
     def __init__(self, batch , group, window_width = 640, window_height = 480):
 
-        self._is_over  = False
-        self.stop = False
+        self._stop  = False 
         
         self.batch =  batch
         self.card_group = group
@@ -43,7 +42,7 @@ class Game:
 
     
     @property
-    def is_over(self):
+    def has_finished(self):
         player_total_value = self.player.total_value
         dealer_total_value = self.dealer.total_value
 
@@ -53,10 +52,10 @@ class Game:
         elif player_total_value > 21 :
             self.result = "player_estourou"
             return True
-        elif self._is_over and player_total_value > dealer_total_value:
+        elif self._stop and player_total_value > dealer_total_value:
             self.result = "player_valormaior"
             return True
-        elif self._is_over: 
+        elif self._stop: 
             self.result = "dealer_valormaior"
             return True
         
@@ -101,7 +100,7 @@ class Game:
 
 
     def on_click_stop(self):
-        self._is_over = True
+        self._stop = True
 
 
     def restart_game(self):

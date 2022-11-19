@@ -29,7 +29,7 @@ def on_draw():
     window.clear()
     background.draw()
     
-    if game.is_over:
+    if game.has_finished:
         game.draw_result()
         game.botao_recomecar.draw()
         game.botao_menu.draw()
