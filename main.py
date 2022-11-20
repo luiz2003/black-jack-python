@@ -1,5 +1,5 @@
 import pyglet
-from src.menu.menu import MeuMenu
+from src.menu import MeuMenu
 
 menu = MeuMenu()
 
