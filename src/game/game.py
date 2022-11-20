@@ -6,14 +6,25 @@ import pyglet
 from pathlib import Path
 
 class Game:
-    def __init__(self, batch , group, window_width = 640, window_height = 480):
+    def __init__(self):
+
+        self.batch = pyglet.graphics.Batch()
+        self.card_group = pyglet.graphics.OrderedGroup(1)
+        self.background_group = pyglet.graphics.OrderedGroup(0)
+
+        self.window = pyglet.window.Window(caption='Blackjack')
+
+        self.icon = pyglet.image.load(Path('sprites/blackjack_icon.png'))
+        self.window.set_icon(self.icon)
+
+        self.background_image = pyglet.image.load(Path('sprites/blackjack_background.jpg'))
+        self.background = pyglet.sprite.Sprite(self.background_image, group= self.background_group)
+
 
         self._stop  = False 
         
-        self.batch =  batch
-        self.card_group = group
-        self.window_width = window_width
-        self.window_height = window_height
+        self.window_width = self.window._width
+        self.window_height = self.window._height
 
         self.deck = baralho.Baralho()
 
@@ -102,6 +113,24 @@ class Game:
     def on_click_stop(self):
         self._stop = True
 
+    def on_mouse_press(self, x,y, button, modifiers):
+        self.botao_comprar.clica(x,y)
+        self.botao_parar.clica(x,y)
+
+    def on_draw(self):
+        self.window.clear()
+        self.background.draw()
+        
+        if self.has_finished:
+            self.draw_result()
+            self.botao_recomecar.draw()
+            self.botao_menu.draw()
+            print(self.result)
+            
+        else:
+            self.batch.draw()
+            self.botao_comprar.draw()
+            self.botao_parar.draw()
 
     def restart_game(self):
         pass 

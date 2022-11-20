@@ -1,10 +1,13 @@
-
+from ..cartas import cartas
 class Player:
     def __init__(self) -> None:
         self.hand = []
         self._total_value = 0
 
     def add_card(self, card):
+        if not isinstance(card, cartas.Carta):
+            raise TypeError("add_card() method must receive an instace of Carta.")
+
         self.hand.append(card)
     
     @property

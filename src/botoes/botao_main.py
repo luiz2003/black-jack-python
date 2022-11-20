@@ -4,7 +4,16 @@ import pyglet.shapes
 class Widget:
 
     def __init__(self, x, y, width, height, texto):
-        self.x = x
+        
+        if not(isinstance(x, int) or isinstance(y,int)):
+            raise ValueError("Invalid value for x or y")
+
+                
+        if not(isinstance(width, int) or isinstance(height,int)):
+            raise ValueError("Invalid value for width or height")
+
+            
+        self.x = x    
         self.y = y
         self.width = width
         self.height = height
@@ -18,10 +27,17 @@ class Widget:
                 y = self.y + self.height // 2)
 
     def contem_ponto(self, x, y):
+
+        if not(isinstance(x, int) or isinstance(y,int)):
+            raise ValueError("Invalid value for x or y")       
+        
         return x >= self.x and x <= self.x + self.width \
             and y >= self.y and y <= self.y + self.height
 
     def clica(self, x, y):
+        if not(isinstance(x, int) or isinstance(y,int)):
+            raise ValueError("Invalid value for x or y")
+
         if self.contem_ponto(x, y):
             self.on_click()
     

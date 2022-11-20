@@ -2,6 +2,13 @@ from pathlib import Path
 import pyglet
 class Carta:
     def __init__(self,  naipe, value):
+        
+        if value not in (["Valete", "Rainha", "Rei", "A"] + [i for i in range(1, 11)]):
+            raise ValueError("Invalid value for card")
+
+        if naipe not in ["Paus", "Copas", "Espadas", "Ouro"]:
+            raise ValueError("Invalid card suit")
+
         self._value = value
         self._naipe = naipe
         image = pyglet.image.load(Path('./sprites/'+ str(value) + naipe + ".png").resolve())
