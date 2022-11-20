@@ -6,7 +6,7 @@ import pyglet
 from pathlib import Path
 
 class Game:
-    def __init__(self, ):
+    def __init__(self):
 
         self.batch = pyglet.graphics.Batch()
         self.card_group = pyglet.graphics.OrderedGroup(1)

@@ -1,12 +1,22 @@
 from ..cartas import baralho
 from ..player import player
 
+
+playerClass =  player.Player
+
 class Dealer(player.Player):
     def pull_card(self, player):
+        if not isinstance(player, playerClass):
+            raise TypeError("pull_card method must receive an instance of Player")
+
         player.add_card(self.deck.pop())
     
     
     def start_game(self, player):
+        
+        if not isinstance(player, playerClass):
+            raise TypeError("pull_card method must receive an instance of Player") 
+        
         self.deck = baralho.Baralho()
         self.deck.shuffle()
 
