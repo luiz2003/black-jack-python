@@ -3,7 +3,7 @@ import pyglet.shapes
 
 class Widget:
 
-    def __init__(self, x, y, width, height, texto):
+    def __init__(self, x: int, y:int, width:int, height:int, texto: str) -> None:
         
         if not(isinstance(x, int) or isinstance(y,int)):
             raise ValueError("Invalid value for x or y")
@@ -26,7 +26,7 @@ class Widget:
                 x = self.x + self.width // 2,
                 y = self.y + self.height // 2)
 
-    def contem_ponto(self, x, y):
+    def contem_ponto(self, x: int, y:int) -> bool:
 
         if not(isinstance(x, int) or isinstance(y,int)):
             raise ValueError("Invalid value for x or y")       
@@ -34,18 +34,18 @@ class Widget:
         return x >= self.x and x <= self.x + self.width \
             and y >= self.y and y <= self.y + self.height
 
-    def clica(self, x, y):
+    def clica(self, x: int, y: int) -> None:
         if not(isinstance(x, int) or isinstance(y,int)):
             raise ValueError("Invalid value for x or y")
 
         if self.contem_ponto(x, y):
             self.on_click()
     
-    def draw(self):
+    def draw(self) -> None:
         self.moldura.draw()
         self.label.draw()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Botão '{self.texto}'"
 
 class Botao(Widget):

@@ -6,7 +6,7 @@ game = Game()
 
 @game.window.event
 def on_mouse_press(x,y, button, modifiers):
-    game.on_mouse_press(x, y, button, modifiers)
+    game.on_mouse_press(x, y)
 
 @game.window.event
 def on_draw():

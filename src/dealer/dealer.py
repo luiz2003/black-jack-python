@@ -5,14 +5,14 @@ from ..player import player
 playerClass =  player.Player
 
 class Dealer(player.Player):
-    def pull_card(self, player):
+    def pull_card(self, player: player.Player)->None:
         if not isinstance(player, playerClass):
             raise TypeError("pull_card method must receive an instance of Player")
 
         player.add_card(self.deck.pop())
     
     
-    def start_game(self, player):
+    def start_game(self, player: player.Player) -> None:
         
         if not isinstance(player, playerClass):
             raise TypeError("pull_card method must receive an instance of Player") 
