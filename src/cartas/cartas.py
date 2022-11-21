@@ -1,7 +1,10 @@
+from __future__ import annotations
 from pathlib import Path
 import pyglet
+from typing import Union
+
 class Carta:
-    def __init__(self,  naipe, value):
+    def __init__(self,  naipe:str, value: Union[str,int]) -> None:
         
         if value not in (["Valete", "Rainha", "Rei", "A"] + [i for i in range(1, 11)]):
             raise ValueError("Invalid value for card")
@@ -15,7 +18,7 @@ class Carta:
         self.sprite = pyglet.sprite.Sprite(image)
     
     
-    def convert_value(self, hand):
+    def convert_value(self, hand: list[Carta])-> int:
         
         if self._value in ["Valete", "Rainha", "Rei"]:
             return 10
@@ -34,5 +37,5 @@ class Carta:
     def __repr__(self) -> str:
         return str(self._value) + " " + self._naipe
 
-    def __eq__(self, o):
+    def __eq__(self, o)-> bool:
       return self._value == o.value and self._naipe == o.naipe

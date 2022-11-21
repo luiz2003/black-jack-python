@@ -6,7 +6,7 @@ import pyglet
 from pathlib import Path
 
 class Game:
-    def __init__(self):
+    def __init__(self)->None:
 
         self.batch = pyglet.graphics.Batch()
         self.card_group = pyglet.graphics.OrderedGroup(1)
@@ -53,7 +53,7 @@ class Game:
 
     
     @property
-    def has_finished(self):
+    def has_finished(self)->bool:
         player_total_value = self.player.total_value
         dealer_total_value = self.dealer.total_value
 
@@ -71,7 +71,7 @@ class Game:
             return True
         
 
-    def draw_result(self):
+    def draw_result(self)->None:
         if self.result == 'empate':
             label = pyglet.text.Label('Empatou',
                                 font_name='blackjack_font',
@@ -105,19 +105,19 @@ class Game:
         label.draw()
             
 
-    def buy_card(self):
+    def buy_card(self)->None:
         self.dealer.pull_card(self.player)
         self.define_positions()
 
 
-    def on_click_stop(self):
+    def on_click_stop(self)->None:
         self._stop = True
 
-    def on_mouse_press(self, x,y, button, modifiers):
+    def on_mouse_press(self, x: int ,y: int) -> None:
         self.botao_comprar.clica(x,y)
         self.botao_parar.clica(x,y)
 
-    def on_draw(self):
+    def on_draw(self) -> None:
         self.window.clear()
         self.background.draw()
         
@@ -140,7 +140,7 @@ class Game:
         pass
 
 
-    def define_positions(self):
+    def define_positions(self) -> None:
         player_total_width = 0
 
         for card in self.player.hand:
