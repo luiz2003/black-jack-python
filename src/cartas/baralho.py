@@ -1,13 +1,13 @@
 import random
 from . import cartas
-import pyglet
-
 Carta = cartas.Carta
+import copy
+
 
 class Baralho:
     def __init__(self)->None:
-        self.cards = []
-        for naipe in ["Paus", "Copas", "Espadas", "Ouro"]:
+        self._cards = []
+        for naipe in [suit for suit in cartas.Naipes]:
             for i in range(1,12):
                 if i == 1:
                     self.cards.append(Carta( naipe, "A"))
@@ -20,6 +20,10 @@ class Baralho:
 
     def pop(self) -> cartas.Carta :
         return self.cards.pop()
+
+    @property
+    def cards(self):
+        return copy.deepcopy(self._cards)
 
     def shuffle(self)->None:
         for i in range (len(self.cards)-1,0,-1):
