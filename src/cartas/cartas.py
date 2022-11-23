@@ -2,19 +2,32 @@ from __future__ import annotations
 from pathlib import Path
 import pyglet
 from typing import Union
+from enum import Enum
+
+class Naipes(Enum):
+    PAUS = "Paus"
+    COPAS = "Copas"
+    ESPADAS = "Espadas"
+    OURO = "Ouro"
+
+class Court(Enum):
+    VALETE = "Valete"
+    RAINHA = "Rainha"
+    REI = "Rei"
+    ACE = "A"
 
 class Carta:
-    def __init__(self,  naipe:str, value: Union[str,int]) -> None:
+    def __init__(self,  naipe: Naipes, value: Union[str,int]) -> None:
         
-        if value not in (["Valete", "Rainha", "Rei", "A"] + [i for i in range(1, 11)]):
+        if value not in ([member.value for member in Court] + [i for i in range(1, 11)]):
             raise ValueError("Invalid value for card")
 
-        if naipe not in ["Paus", "Copas", "Espadas", "Ouro"]:
+        if naipe not in [suit for suit in Naipes]:
             raise ValueError("Invalid card suit")
 
         self._value = value
         self._naipe = naipe
-        image = pyglet.image.load(Path('./sprites/'+ str(value) + naipe + ".png").resolve())
+        image = pyglet.image.load(Path('./sprites/'+ str(value) + str(naipe.value) + ".png").resolve())
         self.sprite = pyglet.sprite.Sprite(image)
     
     
@@ -35,7 +48,7 @@ class Carta:
         
 
     def __repr__(self) -> str:
-        return str(self._value) + " " + self._naipe
+        return str(self._value) + " " + self._naipe.value
 
     def __eq__(self, o)-> bool:
-      return self._value == o.value and self._naipe == o.naipe
+      return self._value == o.value and self._naipe.value == o.naipe.value
