@@ -10,23 +10,23 @@ class Baralho:
         for naipe in [suit for suit in cartas.Naipes]:
             for i in range(1,12):
                 if i == 1:
-                    self.cards.append(Carta( naipe, "A"))
+                    self._cards.append(Carta( naipe, "A"))
                     continue
                 if i <=10:
-                    self.cards.append(Carta( naipe, i))
+                    self._cards.append(Carta( naipe, i))
                     continue
                 for j in ["Valete", "Rainha", "Rei"]:
-                    self.cards.append(Carta( naipe, j))
+                    self._cards.append(Carta( naipe, j))
 
     def pop(self) -> cartas.Carta :
-        return self.cards.pop()
+        return self._cards.pop()
 
     @property
     def cards(self):
         return copy.deepcopy(self._cards)
 
     def shuffle(self)->None:
-        for i in range (len(self.cards)-1,0,-1):
+        for i in range (len(self._cards)-1,0,-1):
             r = random.randint(0 , i)
-            self.cards[i]  , self.cards[r] = self.cards[r] , self.cards[i]
+            self._cards[i]  , self._cards[r] = self._cards[r] , self._cards[i]
                 
