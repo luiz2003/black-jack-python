@@ -37,7 +37,7 @@ class Carta:
             return 10
         
         if self._value != "A":
-            return self._value 
+            return int(self._value)
         
         for card in hand:
             if card._value in ["Valete", "Rainha", "Rei"]:
