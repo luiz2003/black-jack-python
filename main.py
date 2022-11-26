@@ -1,15 +1,9 @@
 import pyglet
+from src.menu.menu import MeuMenu
 from pathlib import Path
-from src.game.game import Game
 
-game = Game()
-
-@game.window.event
-def on_mouse_press(x,y, button, modifiers):
-    game.on_mouse_press(x, y)
-
-@game.window.event
-def on_draw():
-    game.on_draw()
+jogo = MeuMenu(929,626)
+icon = pyglet.image.load(Path('sprites/blackjack_icon.png'))
+jogo.set_icon(icon)
 
 pyglet.app.run()
