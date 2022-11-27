@@ -29,6 +29,8 @@ class Game(pyglet.window.Window):
         self.dealer = dealer.Dealer()
 
         self.player = player.Player()
+        
+        self.apostas = apostas.Apostas()
 
         self.dealer.start_game(self.player) 
 
@@ -45,6 +47,7 @@ class Game(pyglet.window.Window):
         self.botao_comprar = Botao(20, 50, 100, 50, "Comprar", self.buy_card)
         self.botao_parar = Botao(520, 50, 100, 50, "Parar", self.on_click_stop)
         self.botao_menu = Botao(470, 50, 150, 50, "Ir para Menu", self.go_to_menu)
+        #self.botao_apostas = Apostas(470, 520, 150, 50)
         
         self.result = ""
 
@@ -101,6 +104,7 @@ class Game(pyglet.window.Window):
                                 anchor_x='center', anchor_y='center')
         label.draw()
             
+    #self.apostas.resultado(self.result, self.player.hasBlackJack)
 
     def buy_card(self)->None:
         self.dealer.pull_card(self.player)
