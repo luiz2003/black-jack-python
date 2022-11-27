@@ -31,7 +31,7 @@ class Game(pyglet.window.Window):
 
         self.player = player.Player()
         
-        self.apostas = apostas.Apostas()
+        self.apostas = apostas.Aposta(470, 520, 150, 50)
 
         self.dealer.start_game(self.player) 
 
