@@ -9,21 +9,8 @@ from ..game import game
 from ..player import player
 
 class Aposta:   
-    def __init__(self, valor)->None:
-        if valor > 0:
-            self.valor = valor
-        else:
-            print("Aposta inválida.")
-    
-    def resetar_aposta(self, indicador_partidas)->None:
-        if indicador_partidas == "player_estourou" or indicador_partidas == "dealer_valormaior": #jogador perde
-            self._teto = teto_inicial
-            
-    def nova_aposta(self, novo_valor)->None:
-        if novo_valor > 0:
-            self.valor = novo_valor
-        else:
-            print("Aposta inválida.")
+    def __init__(self)->None:
+            self.valor = 1500
    
     def resultado(self, indicador_partidas, indicador_blackjack):
         if indicador_partidas == "player_estourou" or indicador_partidas == "dealer_valormaior": #jogador perde
@@ -44,3 +31,4 @@ class Aposta:
                                 font_size=30,
                                 x=self._width//2, y=150,
                                 anchor_x='center', anchor_y='center')
+      
