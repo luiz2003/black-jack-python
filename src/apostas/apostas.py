@@ -75,7 +75,7 @@ class Aposta(Input):
                                 x=self._width//2, y=150,
                                 anchor_x='center', anchor_y='center')
         elif indicador_blackjack == True: #jogador ganha com blackjack
-            label = pyglet.text.Label(f'Você perdeu {self.valor*2.5} fichas!',
+            label = pyglet.text.Label(f'Você ganhou {self.valor*2.5} fichas!',
                                 font_name='Times New Roman',
                                 font_size=30,
                                 x=self._width//2, y=150,
