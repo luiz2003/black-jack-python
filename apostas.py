@@ -36,3 +36,7 @@ class Aposta:
             self.valor = novo_valor
         else:
             print("Aposta inválida", self._teto)
+    
+    def resetar_aposta(self, contador_partidas):
+      if contador_partidas == 0:
+        self.valor = 0
