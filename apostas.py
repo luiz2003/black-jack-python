@@ -1,7 +1,5 @@
 '''
---- Anotações ---
-
-  No Blackjack, você pode apostar qualquer valor x tq 0 < x <= TETO, em que TETO, no nosso jogo:
+No Blackjack, você pode apostar qualquer valor x tq 0 < x <= TETO, em que TETO, no nosso jogo:
 -> dobra a cada partida vencida
 -> reseta para TETO_INICIAL cada vez que o jogador perde ou empata
 '''
