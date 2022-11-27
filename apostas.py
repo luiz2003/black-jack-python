@@ -1,45 +1,46 @@
 '''
-No Blackjack, você pode apostar qualquer valor x tq 0 < x <= TETO, em que TETO, no nosso jogo:
--> dobra a cada partida vencida
--> reseta para TETO_INICIAL cada vez que o jogador perde ou empata
-
-A cada vez em que o jogador perde ou empata, o valor de sua se torna 0 e ele é obrigado a apostar um novo valor de 0 a TETO.
+No Blackjack, o jogador pode apostar um valor qualquer x. Ao ganhar, de maneira geral, o jogador receberá 2x o valor de sua aposta.
+Quando o jogador ganha com um Blackjack, ele receberá 2.5x o valor de sua aposta.
 '''
 
 import pyglet
 from pathlib import Path
 from ..game import game
+from ..player import player
 
-class Aposta:
-    TETO_INICIAL = 1500
-    
-    def __init__(self, valor, teto=TETO_INICIAL):
-        self._teto = teto
-        
-        if valor > 0 and valor <= teto:
+class Aposta:   
+    def __init__(self, valor)->None:
+        if valor > 0:
             self.valor = valor
         else:
             print("Aposta inválida.")
     
-    def get_teto(self):
-        return self._teto
-    
-    def aumentar_teto(self, indicador_partidas):
-        if indicador_partidas == "player_valormaior" or indicador_partidas == "dealer_estourou": #jogador ganha
-            self._teto = 2 * self._teto 
-    
-    def resetar_teto(self, indicador_partidas):
-        if indicador_partidas == "player_estourou" or indicador_partidas == "dealer_valormaior": #jogador perde
-            self._teto = teto_inicial
-    
-    def resetar_aposta(self, indicador_partidas):
+    def resetar_aposta(self, indicador_partidas)->None:
         if indicador_partidas == "player_estourou" or indicador_partidas == "dealer_valormaior": #jogador perde
             self._teto = teto_inicial
             
-    def nova_aposta(self, novo_valor):
-        if novo_valor > 0 and novo_valor <= self._teto:
+    def nova_aposta(self, novo_valor)->None:
+        if novo_valor > 0:
             self.valor = novo_valor
         else:
             print("Aposta inválida.")
    
-                 
+    def resultado(self, indicador_partidas, indicador_blackjack):
+        if indicador_partidas == "player_estourou" or indicador_partidas == "dealer_valormaior": #jogador perde
+            label = pyglet.text.Label(f'Você perdeu {self.valor} fichas...',
+                                font_name='Times New Roman',
+                                font_size=30,
+                                x=self._width//2, y=150,
+                                anchor_x='center', anchor_y='center')
+        elif indicador_partidas == "dealer_estourou" or indicador_partidas == "player_valormaior": #jogador ganha
+            label = pyglet.text.Label(f'Você ganhou {self.valor*2} fichas!',
+                                font_name='Times New Roman',
+                                font_size=30,
+                                x=self._width//2, y=150,
+                                anchor_x='center', anchor_y='center')
+        elif indicador_blackjack == True: #jogador ganha com blackjack
+            label = pyglet.text.Label(f'Você perdeu {self.valor*2.5} fichas!',
+                                font_name='Times New Roman',
+                                font_size=30,
+                                x=self._width//2, y=150,
+                                anchor_x='center', anchor_y='center')
