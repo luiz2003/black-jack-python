@@ -11,8 +11,7 @@ from src.botoes.botao_main import Widget
 
 
 class Aposta(Widget):
-    numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-
+    
     def __init__(self, x, y, width, height, texto=""):
         super().__init__(x, y, width, height, texto)
         self.selecionado = False
@@ -26,6 +25,8 @@ class Aposta(Widget):
                                        anchor_x='center', anchor_y='center',
                                        x=self.x + self.width // 2,
                                        y=self.y + self.height // 2)
+        
+        self.numeros = ["0","1","2","3","4","5","6","7","8","9"]
 
     def draw(self):
         if self.selecionado:
@@ -44,10 +45,10 @@ class Aposta(Widget):
     def digita(self, symbol):
         if not self.selecionado:
             return
-        if symbol == "BACKSPACE":
-            self.label.text = self.label.text[0:-1]
-        if symbol in Aposta.numeros:
+        if symbol in self.numeros:
             self.label.text += symbol
+        elif symbol == "BACKSPACE":
+            self.label.text = self.label.text[0:-1]
         else:
             raise ValueError("Erro, digite apenas números!")
 
