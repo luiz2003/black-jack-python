@@ -138,7 +138,7 @@ class Game(pyglet.window.Window):
                                                x=self._width // 2, y=150,
                                                anchor_x='center', anchor_y='center')
         label.draw()
-        
+
         if self.valor != "Apostar":
             label1.draw()
 
