@@ -30,8 +30,6 @@ class Game(pyglet.window.Window):
         self.dealer = dealer.Dealer()
 
         self.player = player.Player()
-        
-        self.apostas = apostas.Aposta(470, 520, 150, 50)
 
         self.dealer.start_game(self.player) 
 
@@ -48,10 +46,11 @@ class Game(pyglet.window.Window):
         self.botao_comprar = Botao(20, 50, 100, 50, "Comprar", self.buy_card)
         self.botao_parar = Botao(520, 50, 100, 50, "Parar", self.on_click_stop)
         self.botao_menu = Botao(470, 50, 150, 50, "Ir para Menu", self.go_to_menu)
-        #self.botao_apostas = Apostas(470, 520, 150, 50)
+
+        self.botao_apostas = apostas.Aposta(470, 400, 150, 50, "Apostar")
+        self.valor = self.botao_apostas.label.text
         
         self.result = ""
-
     
     @property
     def has_finished(self)->bool:
@@ -79,38 +78,70 @@ class Game(pyglet.window.Window):
                                 font_size=36,
                                 x=self._width//2, y= self._height//2,
                                 anchor_x='center', anchor_y='center')
+            label1 = pyglet.text.Label(f'Você perdeu {self.valor} fichas...',
+                                       font_name='Times New Roman',
+                                       font_size=30,
+                                       x=self._width // 2, y=150,
+                                       anchor_x='center', anchor_y='center')
         elif self.result == 'player_valormaior':
             label = pyglet.text.Label('Seu valor foi maior!',
                                 font_name='Times New Roman',
                                 font_size=36,
                                 x=self._width//2, y= self._height//2,
                                 anchor_x='center', anchor_y='center')
+            label1 = pyglet.text.Label(f'Você ganhou {int(self.valor)*2} fichas!',
+                                      font_name='Times New Roman',
+                                      font_size=30,
+                                      x=self._width // 2, y=150,
+                                      anchor_x='center', anchor_y='center')
         elif self.result == 'dealer_valormaior':
             label = pyglet.text.Label('O valor do dealer foi maior...',
                                 font_name='Times New Roman',
                                 font_size=36,
                                 x=self._width//2, y= self._height//2,
                                 anchor_x='center', anchor_y='center')
+            label1 = pyglet.text.Label(f'Você perdeu {self.valor} fichas...',
+                                       font_name='Times New Roman',
+                                       font_size=30,
+                                       x=self._width // 2, y=150,
+                                       anchor_x='center', anchor_y='center')
         elif self.result == 'player_estourou':
             label = pyglet.text.Label('Seu valor ultrapassou 21...',
                                 font_name='Times New Roman',
                                 font_size=36,
                                 x=self._width//2, y= self._height//2,
                                 anchor_x='center', anchor_y='center')
+            label1 = pyglet.text.Label(f'Você perdeu {self.valor} fichas...',
+                                       font_name='Times New Roman',
+                                       font_size=30,
+                                       x=self._width // 2, y=150,
+                                       anchor_x='center', anchor_y='center')
         elif self.result == 'dealer_estourou':
             label = pyglet.text.Label('O dealer ultrapassou 21!',
                                 font_name='Times New Roman',
                                 font_size=36,
                                 x=self._width//2, y= self._height//2,
                                 anchor_x='center', anchor_y='center')
+            label1 = pyglet.text.Label(f'Você ganhou {int(self.valor)*2} fichas!',
+                                       font_name='Times New Roman',
+                                       font_size=30,
+                                       x=self._width // 2, y=150,
+                                       anchor_x='center', anchor_y='center')
+        elif player.hasBlackJack == True:
+            label1 = pyglet.text.Label(f'Você ganhou {int(self.valor)*3} fichas!',
+                                       font_name='Times New Roman',
+                                       font_size=30,
+                                       x=self._width // 2, y=150,
+                                       anchor_x='center', anchor_y='center')
         label.draw()
-            
-    #self.apostas.resultado(self.result, self.player.hasBlackJack)
+        label1.draw()
 
     def buy_card(self)->None:
         self.dealer.pull_card(self.player)
         self.define_positions()
 
+    def modificar_label(self):
+        self.label_apostas.texto = f'Valor da aposta: {self.aposta.nova_aposta}'
 
     def on_click_stop(self)->None:
         self._stop = True
@@ -121,6 +152,11 @@ class Game(pyglet.window.Window):
         else:
             self.botao_comprar.clica(x,y)
             self.botao_parar.clica(x,y)
+            self.botao_apostas.clica(x,y)
+
+    def on_key_press(self, symbol, modifiers):
+        if symbol == pyglet.window.key.BACKSPACE:
+            self.botao_apostas.digita("BACKSPACE")
 
     def on_draw(self) -> None:
         self.clear()
@@ -134,10 +170,10 @@ class Game(pyglet.window.Window):
             self.batch.draw()
             self.botao_comprar.draw()
             self.botao_parar.draw()
+            self.botao_apostas.draw()
 
     def go_to_menu(self):
         self.close()
-
 
     def define_positions(self) -> None:
         player_total_width = 0
