@@ -22,7 +22,6 @@ class Game(pyglet.window.Window):
         self.background_image = pyglet.image.load(Path('sprites/blackjack_background.jpg'))
         self.background = pyglet.sprite.Sprite(self.background_image, group= self.background_group)
 
-
         self._stop  = False 
 
         self.deck = baralho.Baralho()
@@ -47,8 +46,7 @@ class Game(pyglet.window.Window):
         self.botao_parar = Botao(520, 50, 100, 50, "Parar", self.on_click_stop)
         self.botao_menu = Botao(470, 50, 150, 50, "Ir para Menu", self.go_to_menu)
 
-        self.botao_apostas = apostas.Aposta(470, 400, 150, 50, "Apostar")
-        self.valor = self.botao_apostas.label.text
+        self.botao_apostas = apostas.Aposta(470, 400, 150, 50, "Apostar")   
         
         self.result = ""
     
@@ -139,12 +137,11 @@ class Game(pyglet.window.Window):
     def buy_card(self)->None:
         self.dealer.pull_card(self.player)
         self.define_positions()
-
-    def modificar_label(self):
-        self.label_apostas.texto = f'Valor da aposta: {self.aposta.nova_aposta}'
+        self.valor = self.botao_apostas.label.text
 
     def on_click_stop(self)->None:
         self._stop = True
+        self.valor = self.botao_apostas.label.text
 
     def on_mouse_press(self, x: int ,y: int, button:int, modifiers:int) -> None:
         if self.has_finished:
@@ -153,6 +150,9 @@ class Game(pyglet.window.Window):
             self.botao_comprar.clica(x,y)
             self.botao_parar.clica(x,y)
             self.botao_apostas.clica(x,y)
+
+    def on_text(self, text):
+       self.botao_apostas.digita(text)
 
     def on_key_press(self, symbol, modifiers):
         if symbol == pyglet.window.key.BACKSPACE:
@@ -165,6 +165,7 @@ class Game(pyglet.window.Window):
         if self.has_finished:
             self.draw_result()
             self.botao_menu.draw()
+            print()
             
         else:
             self.batch.draw()
